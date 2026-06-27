@@ -1,0 +1,248 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>A_NAES</title>
+<style>
+
+:root{
+  --bg:#f4ead9;
+  --paper:#fffaf0;
+  --paper2:#fff3dc;
+  --ink:#1d2b20;
+  --muted:#766b5a;
+  --line:#ddc9a6;
+  --accent:#0f6b4f;
+  --accent2:#e0a02f;
+  --good:#0f7b57;
+  --bad:#b7352f;
+  --gold:#b87517;
+  --shadow:0 10px 0 rgba(29,43,32,.08),0 18px 38px rgba(70,48,18,.12);
+}
+body.light{--bg:#f4ead9;--paper:#fffaf0;--paper2:#fff3dc;--ink:#1d2b20;--muted:#766b5a;--line:#ddc9a6;--shadow:0 10px 0 rgba(29,43,32,.08),0 18px 38px rgba(70,48,18,.12)}
+body.green{--accent:#0f6b4f;--accent2:#e0a02f}
+body.gold{--accent:#7a4e12;--accent2:#d69a23}
+body.purple{--accent:#5f3b83;--accent2:#c28bff}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:system-ui,"Segoe UI",Tahoma,Arial,sans-serif;color:var(--ink);background:
+linear-gradient(90deg,rgba(122,78,18,.045) 1px,transparent 1px) 0 0/24px 24px,
+linear-gradient(0deg,rgba(122,78,18,.045) 1px,transparent 1px) 0 0/24px 24px,
+var(--bg)}
+body{padding-bottom:100px}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:1080px;margin:auto;padding:12px}
+.header{
+  max-width:1080px;margin:12px auto 0;padding:16px;
+  background:var(--paper);
+  border:2px solid var(--ink);
+  border-radius:28px;
+  box-shadow:8px 8px 0 var(--accent2);
+}
+.header-in{max-width:1080px;margin:auto}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:60px;height:60px;border-radius:18px;background:var(--accent);
+  color:#fff;display:grid;place-items:center;border:2px solid var(--ink);
+  box-shadow:4px 4px 0 var(--accent2)
+}
+.logo b{font-size:25px}.logo i{font-style:normal;color:var(--accent2)}
+.brand h1{margin:0;font-size:26px;letter-spacing:.5px}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.topcards{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:15px}
+.topcard{
+  background:var(--paper2);
+  border:2px dashed var(--line);
+  border-radius:18px;
+  padding:12px;
+}
+.topcard span{font-size:12px;color:var(--muted);font-weight:800}
+.topcard b{display:block;margin-top:5px;font-size:16px;color:var(--ink)}
+.page{display:none}.page.active{display:block}
+.card{
+  background:var(--paper);
+  border:2px solid var(--line);
+  border-right:7px solid var(--accent);
+  border-radius:24px;
+  padding:15px;
+  margin-top:14px;
+  box-shadow:var(--shadow);
+}
+.card h2{margin:0 0 13px;font-size:18px;color:var(--accent)}
+.card h3{margin:0 0 9px;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.full{grid-column:1/-1}
+label{display:block;color:var(--muted);font-size:12px;font-weight:900;margin-bottom:6px}
+input,select,textarea{
+  width:100%;border:2px solid var(--line);background:#fffdf7;color:var(--ink);
+  border-radius:16px;padding:12px;outline:none
+}
+textarea{min-height:78px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(15,107,79,.12)}
+.help{
+  background:#fffdf7;border:2px dashed var(--line);border-radius:18px;
+  padding:12px;color:var(--muted);font-size:13px;line-height:1.8
+}
+.tabs3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.tabs3 button{
+  border:2px solid var(--line);background:#fffdf7;color:var(--muted);
+  border-radius:16px;padding:12px 6px;font-weight:1000
+}
+.tabs3 button.active{background:var(--accent);color:#fff;border-color:var(--ink);box-shadow:4px 4px 0 var(--accent2)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{
+  border:2px solid var(--ink);background:var(--accent);color:#fff;
+  border-radius:16px;padding:10px 14px;font-weight:1000;box-shadow:3px 3px 0 var(--accent2)
+}
+.btn.secondary{background:#fffdf7;color:var(--accent);border:2px solid var(--line);box-shadow:none}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.small{font-size:12px;padding:8px 10px;border-radius:13px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.kpi{
+  background:#fffdf7;border:2px solid var(--line);border-radius:17px;padding:11px;
+  position:relative;overflow:hidden
+}
+.kpi:before{content:"";position:absolute;right:0;top:0;bottom:0;width:5px;background:var(--accent2)}
+.kpi span{display:block;color:var(--muted);font-size:12px;font-weight:900}
+.kpi b{display:block;margin-top:4px;font-size:15px}
+.filters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.list{display:grid;gap:10px}
+.item{
+  background:#fffdf7;border:2px solid var(--line);border-radius:20px;padding:13px;
+  display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center
+}
+.item h3{margin:0 0 4px;font-size:15px;color:var(--ink)}
+.item p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+.badge{
+  display:inline-block;background:var(--paper2);border:1.5px solid var(--line);
+  border-radius:999px;padding:5px 9px;font-size:12px;font-weight:1000;margin-top:7px
+}
+.good{color:var(--good)}.bad{color:var(--bad)}.gold{color:var(--gold)}.muted{color:var(--muted)}
+.empty{padding:25px;text-align:center;border:2px dashed var(--line);border-radius:18px;color:var(--muted);background:#fffdf7}
+.progress{height:10px;background:#ead9b9;border-radius:999px;overflow:hidden;margin-top:9px;border:1px solid var(--line)}
+.progress i{display:block;height:100%;background:var(--accent)}
+.nav{
+  position:fixed;left:10px;right:10px;bottom:10px;max-width:920px;margin:auto;
+  background:var(--paper);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--accent2);
+  border-radius:26px;padding:8px;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;z-index:20
+}
+.nav button{
+  border:0;background:transparent;color:var(--muted);border-radius:18px;padding:10px 3px;
+  font-size:11px;font-weight:1000
+}
+.nav button.active{background:var(--accent);color:#fff}
+.toast{
+  position:fixed;left:14px;right:14px;bottom:108px;margin:auto;max-width:520px;
+  background:var(--ink);color:#fff;padding:13px;border-radius:16px;text-align:center;
+  display:none;z-index:30;box-shadow:var(--shadow);font-weight:1000
+}
+.pin-screen{position:fixed;inset:0;background:var(--bg);z-index:80;display:none;align-items:center;justify-content:center;color:var(--ink);padding:20px}
+.pin-box{width:min(360px,100%);text-align:center;background:var(--paper);border:2px solid var(--ink);border-radius:28px;padding:22px;box-shadow:8px 8px 0 var(--accent2)}
+.pin-logo{width:72px;height:72px;border-radius:22px;margin:0 auto 20px;background:var(--accent);display:grid;place-items:center;color:#fff;border:2px solid var(--ink)}
+.pin-logo b{font-size:36px}.pin-logo i{color:var(--accent2);font-style:normal}
+.dots{display:flex;justify-content:center;gap:14px;margin:18px 0}.dot{width:12px;height:12px;border:2px solid var(--line);border-radius:50%}.dot.fill{background:var(--accent);border-color:var(--accent)}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.key{height:52px;border:2px solid var(--line);border-radius:15px;background:#fffdf7;color:var(--ink);font-size:20px;font-weight:900}.finger{margin-top:18px;color:var(--accent);font-weight:1000}
+.settings-title{color:var(--accent);text-align:center;margin:0 0 12px}
+.setting-list{background:var(--paper);border:2px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow)}
+.setting-row{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;padding:13px;border-bottom:2px dashed var(--line)}
+.setting-row:last-child{border-bottom:0}
+.sicon{width:32px;height:32px;border-radius:12px;background:var(--paper2);display:grid;place-items:center;color:var(--accent);border:1px solid var(--line)}
+.setting-row b{font-size:13px}.setting-row small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.switch{width:48px;height:26px;border-radius:999px;background:#dfccb0;position:relative;border:2px solid var(--line)}.switch:after{content:"";position:absolute;width:18px;height:18px;top:2px;right:3px;background:#fff;border:1px solid var(--line);border-radius:50%;transition:.15s}.switch.on{background:var(--accent)}.switch.on:after{right:23px}
+.backbar{display:flex;gap:8px;align-items:center;margin-bottom:10px}.backbar h2{margin:0;flex:1}
+hr{border:0;border-top:2px dashed var(--line);margin:14px 0}
+@media(max-width:850px){
+ .grid,.topcards,.form,.filters,.kpis,.tabs3{grid-template-columns:1fr}
+ .item{grid-template-columns:1fr}
+ .actions .btn{flex:1}
+ .header{margin:8px;border-radius:24px}
+ .nav button{font-size:10px}
+}
+
+</style></head><body>
+<div class="pin-screen" id="pinScreen"><div class="pin-box"><div class="pin-logo"><b>A<i>N</i></b></div><h3>أدخل رمز PIN</h3><div class="dots" id="pinDots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div class="keypad"><button class="key" onclick="pinPress('1')">1</button><button class="key" onclick="pinPress('2')">2</button><button class="key" onclick="pinPress('3')">3</button><button class="key" onclick="pinPress('4')">4</button><button class="key" onclick="pinPress('5')">5</button><button class="key" onclick="pinPress('6')">6</button><button class="key" onclick="pinPress('7')">7</button><button class="key" onclick="pinPress('8')">8</button><button class="key" onclick="pinPress('9')">9</button><button class="key" onclick="pinClear()">⌫</button><button class="key" onclick="pinPress('0')">0</button><button class="key" onclick="pinReset()">مسح</button></div><div class="finger">🔒 خصوصيتك أولاً</div></div></div>
+<header class="header"><div class="header-in"><div class="brand"><div class="logo"><b>A<i>N</i></b></div><div><h1>A_NAES</h1><p>تصميم دفتر الحسابات بالكامل لإدارة الكاش والأشخاص والمشاريع</p></div></div><div class="topcards"><div class="topcard"><span>لك عند الناس</span><b id="topRec">0.00 $</b></div><div class="topcard"><span>عليك للناس</span><b id="topOwe">0.00 $</b></div><div class="topcard"><span>صافي المشاريع</span><b id="topProjectNet">0.00 $</b></div><div class="topcard"><span>مشاريع نشطة</span><b id="topActiveProjects">0</b></div><div class="topcard"><span>الكاش معي</span><b id="topCash">0.00 $</b></div></div></div></header>
+<main class="wrap">
+<section id="home" class="page active"><div class="grid"><div class="card"><h2>حركة شخصية</h2><div class="tabs3"><button id="q_take" class="active" onclick="setType('take')">أخذت من</button><button id="q_give" onclick="setType('give')">أعطيت لـ</button><button id="q_buy" onclick="setType('buy')">اشتريت من</button></div><div class="help" id="typeHelp"></div><div class="form"><div><label>الشخص</label><select id="txPerson"></select></div><div><label>المبلغ</label><input id="txAmount" type="number" step="0.01" placeholder="مثال: 25"></div><div><label>العملة</label><select id="txCurrency"><option value="USD">$ دولار</option><option value="TRY">₺ تركي</option><option value="SYP">ل.س سوري</option></select></div><div><label>سعر الصرف</label><input id="txRate" type="number" step="0.01"></div><div><label>التاريخ</label><input id="txDate" type="date"></div><div><label>سبب سريع</label><select id="notePreset" onchange="fillPreset()"><option value="">اختر سببًا</option><option>سلفة مؤقتة</option><option>دفعة حساب</option><option>شراء مواد</option><option>أجار عمل</option><option>تصحيح رصيد</option></select></div><div class="full"><label>الملاحظة</label><textarea id="txNote" placeholder="مثال: دفعة مؤقتة"></textarea></div></div><div class="actions"><button class="btn" id="saveBtn" onclick="saveTx()">حفظ الحركة</button><button class="btn secondary" onclick="clearTx()">تفريغ</button><button class="btn secondary" id="cancelEditBtn" onclick="cancelEdit()" style="display:none">إلغاء التعديل</button></div></div><div class="card"><h2>إضافة شخص</h2><div class="form"><div class="full"><label>اسم الشخص</label><input id="personName" placeholder="مثال: صاحب المحل"></div><div><label>تصنيف</label><input id="personGroup" placeholder="عمل، عائلة، شريك"></div><div><label>ملاحظة</label><input id="personInfo" placeholder="ملاحظة اختيارية"></div></div><div class="actions"><button class="btn" onclick="addPerson()">إضافة الشخص</button></div><div class="kpis" style="margin-top:12px"><div class="kpi"><span>الأشخاص</span><b id="countPeople">0</b></div><div class="kpi"><span>المشاريع</span><b id="countProjects">0</b></div><div class="kpi"><span>حركات شخصية</span><b id="countTx">0</b></div><div class="kpi"><span>عمليات مشاريع</span><b id="countPOps">0</b></div></div></div></div><div class="card"><h2>أهم الحسابات</h2><div id="homePeople" class="list"></div></div></section>
+<section id="cash" class="page">
+  <div class="card">
+    <h2>الكاش معي</h2>
+    <div class="kpis">
+      <div class="kpi"><span>الرصيد الحالي</span><b id="cashNow">0.00 $</b></div>
+      <div class="kpi"><span>إضافات يدوية</span><b id="cashManualIn">0.00 $</b></div>
+      <div class="kpi"><span>مدفوع يدوي</span><b id="cashManualOut">0.00 $</b></div>
+      <div class="kpi"><span>تأثير تلقائي</span><b id="cashAutoNet">0.00 $</b></div>
+    </div>
+    <div class="help" style="margin-top:12px">الكاش يزيد عند: إضافة كاش، أخذت من شخص، ربح/إيراد مشروع. وينقص عند: أعطيت لشخص، تكلفة مشروع، أو مصروف مباشر من الكاش.</div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>إضافة حركة كاش</h2>
+      <div class="form">
+        <div><label>نوع الحركة</label><select id="cashKind"><option value="add">إضافة كاش</option><option value="remove">دفعت من الكاش / مصروف / شراء / وفاء دين</option></select></div>
+        <div><label>المبلغ</label><input id="cashAmount" type="number" step="0.01" placeholder="مثال: 50"></div>
+        <div><label>العملة</label><select id="cashCurrency"><option value="USD">$ دولار</option><option value="TRY">₺ تركي</option><option value="SYP">ل.س سوري</option></select></div>
+        <div><label>سعر الصرف</label><input id="cashRate" type="number" step="0.01" placeholder="1 للدولار"></div>
+        <div><label>التاريخ</label><input id="cashDate" type="date"></div>
+        <div class="full"><label>ملاحظة</label><textarea id="cashNote" placeholder="مثال: كاش معي، مصروف بيت، أجرة طريق..."></textarea></div>
+      </div>
+      <div class="actions"><button class="btn" onclick="addCashOp()">حفظ حركة 💵<br>الكاش</button><button class="btn secondary" onclick="clearCashForm()">تفريغ</button></div>
+    </div>
+    <div class="card">
+      <h2>قواعد الكاش</h2>
+      <div class="help">عند تسجيل <b>أعطيت لـ</b> يتم خصم المبلغ من الكاش تلقائيًا.<br>عند تسجيل <b>أخذت من</b> يزيد الكاش تلقائيًا.<br>عند إضافة <b>تكلفة مشروع</b> ينقص الكاش تلقائيًا.<br>عند إضافة <b>ربح / إيراد مشروع</b> يزيد الكاش تلقائيًا.</div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>سجل الكاش</h2>
+    <div class="filters">
+      <select id="cashFilter" onchange="renderCash()"><option value="">كل الحركات</option><option value="manual">يدوي فقط</option><option value="auto">تلقائي فقط</option><option value="in">الداخل فقط</option><option value="out">الخارج فقط</option></select>
+      <input id="cashSearch" oninput="renderCash()" placeholder="بحث في ملاحظات الكاش...">
+      <button class="btn secondary" onclick="cashFilter.value='';cashSearch.value='';renderCash()">مسح الفلتر</button>
+    </div>
+    <div id="cashList" class="list"></div>
+  </div>
+</section>
+<section id="people" class="page"><div class="card"><h2>الأشخاص</h2><div class="filters"><input id="peopleSearch" oninput="render()" placeholder="بحث عن شخص..."><select id="peopleStatus" onchange="render()"><option value="">كل الحالات</option><option value="rec">لك عليه</option><option value="owe">عليك له</option><option value="zero">مسدّد</option></select><button class="btn secondary" onclick="clearPersonFilters()">مسح الفلتر</button></div><div id="peopleList" class="list"></div></div></section>
+<section id="projects" class="page"><div class="grid"><div class="card"><h2>إنشاء مشروع</h2><div class="form"><div><label>اسم المشروع</label><input id="projectName" placeholder="مثال: مشروع الفول"></div><div><label>الحالة</label><select id="projectStatus"><option value="active">نشط</option><option value="done">منتهي</option><option value="paused">متوقف</option></select></div><div><label>تصنيف</label><input id="projectCategory" placeholder="زراعة، نقل، تجارة"></div><div><label>ميزانية تقديرية</label><input id="projectBudget" type="number" step="0.01" placeholder="اختياري بالدولار"></div><div><label>تاريخ البداية</label><input id="projectStart" type="date"></div><div><label>تاريخ النهاية</label><input id="projectEnd" type="date"></div><div class="full"><label>ملاحظة</label><textarea id="projectNote" placeholder="ملاحظة عن المشروع"></textarea></div></div><div class="actions"><button class="btn" onclick="addProject()">إنشاء المشروع</button></div></div><div class="card"><h2>ملخص المشاريع</h2><div class="kpis"><div class="kpi"><span>المشاريع</span><b id="projectTotal">0</b></div><div class="kpi"><span>نشطة</span><b id="projectActive">0</b></div><div class="kpi"><span>تكاليف</span><b id="allCost">0.00 $</b></div><div class="kpi"><span>أرباح</span><b id="allProfit">0.00 $</b></div></div><div class="help" style="margin-top:12px">بعد إنشاء المشروع اضغط <b>فتح المشروع</b> لتدخل إلى صفحته الخاصة وتدير تكاليفه وأرباحه وشركاءه.</div></div></div><div class="card"><h2>قائمة المشاريع</h2><div class="filters"><input id="projectSearch" oninput="render()" placeholder="بحث عن مشروع..."><select id="projectStatusFilter" onchange="render()"><option value="">كل الحالات</option><option value="active">نشط</option><option value="done">منتهي</option><option value="paused">متوقف</option></select><select id="projectCategoryFilter" onchange="render()"></select></div><div id="projectsList" class="list"></div></div></section>
+<section id="projectPage" class="page"><div class="card"><div class="backbar"><button class="btn secondary small" onclick="openProjectsPage()">رجوع</button><h2 id="projectPageTitle">صفحة المشروع</h2></div><div id="projectPageSummary"></div></div><div class="grid"><div class="card"><h2>إضافة تكلفة</h2><div class="form"><div><label>التصنيف</label><input id="costCategory" placeholder="وقود، عمال، مواد..."></div><div><label>المبلغ</label><input id="costAmount" type="number" step="0.01"></div><div><label>العملة</label><select id="costCurrency"><option value="USD">$ دولار</option><option value="TRY">₺ تركي</option><option value="SYP">ل.س سوري</option></select></div><div><label>سعر الصرف</label><input id="costRate" type="number" step="0.01"></div><div><label>التاريخ</label><input id="costDate" type="date"></div><div class="full"><label>ملاحظة</label><textarea id="costNote" placeholder="تفاصيل التكلفة"></textarea></div></div><div class="actions"><button class="btn" onclick="addProjectOp('cost')">حفظ التكلفة</button></div></div><div class="card"><h2>إضافة ربح / إيراد</h2><div class="form"><div><label>النوع</label><input id="profitCategory" placeholder="بيع، دخل، دفعة..."></div><div><label>المبلغ</label><input id="profitAmount" type="number" step="0.01"></div><div><label>العملة</label><select id="profitCurrency"><option value="USD">$ دولار</option><option value="TRY">₺ تركي</option><option value="SYP">ل.س سوري</option></select></div><div><label>سعر الصرف</label><input id="profitRate" type="number" step="0.01"></div><div><label>التاريخ</label><input id="profitDate" type="date"></div><div class="full"><label>ملاحظة</label><textarea id="profitNote" placeholder="تفاصيل الربح أو الإيراد"></textarea></div></div><div class="actions"><button class="btn" onclick="addProjectOp('profit')">حفظ الربح</button></div></div></div><div class="grid"><div class="card"><h2>شركاء المشروع</h2><div class="form"><div><label>الشريك</label><select id="partnerPerson"></select></div><div><label>النسبة %</label><input id="partnerShare" type="number" step="0.01" placeholder="مثال: 50"></div><div class="full"><label>ملاحظة</label><input id="partnerNote" placeholder="اختياري"></div></div><div class="actions"><button class="btn" onclick="addPartner()">إضافة / تحديث شريك</button></div><div id="projectPartnersList" class="list" style="margin-top:10px"></div></div><div class="card"><h2>معلومات المشروع</h2><div id="projectInfoBox"></div><div class="actions"><button class="btn secondary" onclick="editCurrentProject()">تعديل بيانات المشروع</button></div></div></div><div class="card"><h2>سجل المشروع</h2><div class="filters"><select id="projectPageOpFilter" onchange="renderProjectPage()"><option value="">كل العمليات</option><option value="cost">تكلفة</option><option value="profit">ربح / إيراد</option></select><input id="projectPageSearch" oninput="renderProjectPage()" placeholder="بحث في سجل المشروع..."><button class="btn secondary" onclick="projectPageOpFilter.value='';projectPageSearch.value='';renderProjectPage()">مسح الفلتر</button></div><div id="projectPageOpsList" class="list"></div></div></section>
+<section id="ledger" class="page"><div class="card"><h2>سجل الأشخاص</h2><div class="filters"><select id="filterPerson" onchange="render()"></select><select id="filterType" onchange="render()"><option value="">كل الحركات</option><option value="take">أخذت من</option><option value="give">أعطيت لـ</option><option value="buy">اشتريت من</option></select><input id="ledgerSearch" oninput="render()" placeholder="بحث..."></div><div id="personStats"></div><div id="txList" class="list" style="margin-top:10px"></div></div></section>
+<section id="settings" class="page"><h2 class="settings-title">الإعدادات</h2><div class="setting-list"><div class="setting-row"><div class="sicon">🔒</div><div><b>تشغيل رمز PIN</b><small>حماية الدخول إلى التطبيق</small></div><button id="pinToggle" class="switch" onclick="togglePin()"></button></div><div class="setting-row" onclick="changePin()"><div class="sicon">🔑</div><div><b>تغيير رمز PIN</b><small>تعيين أو تعديل الرمز</small></div><div>›</div></div></div><div class="setting-list"><div class="setting-row"><div class="sicon">🌙</div><div><b>الوضع الليلي</b><small>تغيير مظهر التطبيق</small></div><button id="darkToggle" class="switch" onclick="toggleDark()"></button></div><div class="setting-row"><div class="sicon">🎨</div><div><b>ألوان التطبيق</b><small>الثيم الحالي</small></div><select id="themeSelect" onchange="saveSettingsFromUI()"><option value="orange">برتقالي</option><option value="green">أخضر</option><option value="gold">ذهبي</option><option value="purple">بنفسجي</option></select></div><div class="setting-row"><div class="sicon">💱</div><div><b>سعر التركي</b><small>مقابل الدولار</small></div><input id="rateTrySet" type="number" step="0.01" onchange="saveSettingsFromUI()"></div><div class="setting-row"><div class="sicon">💱</div><div><b>سعر السوري</b><small>مقابل الدولار</small></div><input id="rateSypSet" type="number" step="0.01" onchange="saveSettingsFromUI()"></div><div class="setting-row"><div class="sicon">💵</div><div><b>العملة الافتراضية</b><small>تظهر تلقائيًا بالحركة</small></div><select id="defaultCurrencySet" onchange="saveSettingsFromUI()"><option value="USD">دولار</option><option value="TRY">تركي</option><option value="SYP">سوري</option></select></div><div class="setting-row"><div class="sicon">📝</div><div><b>الملاحظات إجبارية</b><small>للأشخاص فقط</small></div><button id="noteToggle" class="switch" onclick="toggleNote()"></button></div></div><div class="setting-list"><div class="setting-row" onclick="exportJSON()"><div class="sicon">☁️</div><div><b>النسخ الاحتياطي</b><small>تصدير نسخة JSON</small></div><div>›</div></div><div class="setting-row" onclick="importFile.click()"><div class="sicon">♻️</div><div><b>استعادة البيانات</b><small>استيراد نسخة محفوظة</small></div><div>›</div></div><div class="setting-row" onclick="exportCSV()"><div class="sicon">📤</div><div><b>تصدير CSV</b><small>يفتح في Excel</small></div><div>›</div></div><div class="setting-row" onclick="resetAll()"><div class="sicon">🗑️</div><div><b>مسح جميع البيانات</b><small>حذف كل شيء</small></div><div>›</div></div></div><input id="importFile" type="file" accept=".json,application/json" hidden onchange="importJSON(event)"></section>
+</main><nav class="nav"><button class="active" onclick="page('home',this)">🏠<br>الرئيسية</button><button onclick="page('cash',this)">💵<br>الكاش</button><button onclick="page('people',this)">👥<br>الأشخاص</button><button onclick="page('projects',this)">📁<br>المشاريع</button><button onclick="page('ledger',this)">📒<br>السجل</button><button onclick="page('settings',this)">⚙️<br>الإعدادات</button></nav><div class="toast" id="toast"></div>
+<script>
+const DATA_KEY="anaes_data_v7",SET_KEY="anaes_settings_v7";let db={people:[],projects:[],projectOps:[],txs:[],cashOps:[]};let settings={theme:"orange",dark:"no",tryRate:46.2,sypRate:14500,requireNote:"yes",pin:"",defaultCurrency:"USD",pinEnabled:"no"};let currentType="take",editingId=null,currentProjectId="",pinBuffer="";
+const TYPE={take:["أخذت من","ينقص ما لك عند الشخص، أو يزيد ما عليك له."],give:["أعطيت لـ","ينقص ما عليك للشخص، أو يزيد ما لك عنده."],buy:["اشتريت من","يسجل شراء من الشخص ويزيد ما عليك له."]};
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)} function today(){return new Date().toISOString().slice(0,10)}
+function load(){try{let s=JSON.parse(localStorage.getItem(DATA_KEY));if(s)db={...db,...s}}catch(e){}try{settings={...settings,...(JSON.parse(localStorage.getItem(SET_KEY))||{})}}catch(e){}db.people??=[];db.projects??=[];db.projectOps??=[];db.txs??=[];db.cashOps??=[];db.projects.forEach(p=>p.partners??=[]);if(settings.pin)settings.pinEnabled="yes";applySettings()}
+function save(){localStorage.setItem(DATA_KEY,JSON.stringify(db))} function saveSettings(){localStorage.setItem(SET_KEY,JSON.stringify(settings));applySettings()}
+function applySettings(){document.body.classList.remove("green","gold","purple","light");if(settings.theme==="green")document.body.classList.add("green");if(settings.theme==="gold")document.body.classList.add("gold");if(settings.theme==="purple")document.body.classList.add("purple");if(settings.dark!=="yes")document.body.classList.add("light");if(window.themeSelect){themeSelect.value=settings.theme;rateTrySet.value=settings.tryRate;rateSypSet.value=settings.sypRate;defaultCurrencySet.value=settings.defaultCurrency;pinToggle.classList.toggle("on",settings.pinEnabled==="yes"&&!!settings.pin);darkToggle.classList.toggle("on",settings.dark==="yes");noteToggle.classList.toggle("on",settings.requireNote==="yes")}}
+function saveSettingsFromUI(){settings.theme=themeSelect.value;settings.tryRate=+rateTrySet.value||46.2;settings.sypRate=+rateSypSet.value||14500;settings.defaultCurrency=defaultCurrencySet.value;saveSettings();msg("تم حفظ الإعدادات")}
+function toggleDark(){settings.dark=settings.dark==="yes"?"no":"yes";saveSettings()} function toggleNote(){settings.requireNote=settings.requireNote==="yes"?"no":"yes";saveSettings()}
+function togglePin(){if(settings.pinEnabled==="yes"){settings.pinEnabled="no";settings.pin="";saveSettings();msg("تم إلغاء PIN")}else changePin()} function changePin(){let p=prompt("اكتب PIN من 4 أرقام");if(!p)return;if(p.length<4)return msg("PIN قصير");settings.pin=p;settings.pinEnabled="yes";saveSettings();msg("تم تفعيل PIN")}
+function checkLock(){if(settings.pinEnabled==="yes"&&settings.pin)pinScreen.style.display="flex"} function pinPress(n){if(pinBuffer.length>=4)return;pinBuffer+=n;drawDots();if(pinBuffer.length===4){if(pinBuffer===settings.pin){pinScreen.style.display="none";pinBuffer="";drawDots()}else{msg("رمز غير صحيح");pinBuffer="";drawDots()}}} function pinClear(){pinBuffer=pinBuffer.slice(0,-1);drawDots()} function pinReset(){pinBuffer="";drawDots()} function drawDots(){[...pinDots.children].forEach((d,i)=>d.classList.toggle("fill",i<pinBuffer.length))}
+function msg(t){toast.textContent=t;toast.style.display="block";setTimeout(()=>toast.style.display="none",2200)} function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))} function money(v){return (Math.round((v||0)*100)/100).toFixed(2)+" $"} function pfind(id){return db.people.find(p=>p.id===id)} function prfind(id){return db.projects.find(p=>p.id===id)} function usdFrom(a,c,r){a=+a||0;r=+r||1;return c==="USD"?a:(r>0?a/r:a)} function usd(t){return usdFrom(t.amount,t.currency,t.rate)} function impact(t){let v=usd(t);return t.type==="give"?v:-v} function bals(){let m={};db.people.forEach(p=>m[p.id]=0);db.txs.forEach(t=>{m[t.personId]??=0;m[t.personId]+=impact(t)});return m} function projectStats(id){let ops=db.projectOps.filter(o=>o.projectId===id),cost=0,profit=0;ops.forEach(o=>{if(o.kind==="cost")cost+=usd(o);else profit+=usd(o)});return{ops,count:ops.length,cost,profit,net:profit-cost}} function cashEntries(){let rows=[];db.cashOps.forEach(o=>{let v=usd(o);rows.push({id:o.id,manual:true,date:o.date,dir:o.kind==="add"?"in":"out",title:o.kind==="add"?"إضافة كاش":"دفعت من الكاش",amount:v,note:o.note||""})});db.txs.forEach(t=>{let p=pfind(t.personId),v=usd(t);if(t.type==="take")rows.push({manual:false,date:t.date,dir:"in",title:"أخذت من "+(p?p.name:"شخص"),amount:v,note:t.note||""});if(t.type==="give")rows.push({manual:false,date:t.date,dir:"out",title:"أعطيت لـ "+(p?p.name:"شخص"),amount:v,note:t.note||""})});db.projectOps.forEach(o=>{let pr=prfind(o.projectId),v=usd(o);if(o.kind==="cost")rows.push({manual:false,date:o.date,dir:"out",title:"تكلفة مشروع: "+(pr?pr.name:"مشروع"),amount:v,note:o.note||o.category||""});if(o.kind==="profit")rows.push({manual:false,date:o.date,dir:"in",title:"ربح / إيراد مشروع: "+(pr?pr.name:"مشروع"),amount:v,note:o.note||o.category||""})});return rows.sort((a,b)=>String(b.date).localeCompare(String(a.date)))}
+function cashTotalsRaw(){let manualIn=0,manualOut=0,autoIn=0,autoOut=0;cashEntries().forEach(e=>{if(e.manual){if(e.dir==="in")manualIn+=e.amount;else manualOut+=e.amount}else{if(e.dir==="in")autoIn+=e.amount;else autoOut+=e.amount}});let raw=manualIn-manualOut+autoIn-autoOut;return{manualIn,manualOut,autoIn,autoOut,raw,total:Math.max(0,raw),autoNet:autoIn-autoOut}}
+function cashTotals(){return cashTotalsRaw()}
+function currentCash(){return cashTotals().total}
+function canSpendCash(amount){amount=+amount||0;let cur=currentCash();if(amount>cur+0.0001){msg("الكاش غير كافٍ: معك "+money(cur)+" والمطلوب "+money(amount));return false}return true}
+function clearCashForm(){cashKind.value="add";cashAmount.value="";cashCurrency.value=settings.defaultCurrency;updateRateInput(cashCurrency,cashRate);cashDate.value=today();cashNote.value=""}
+function addCashOp(){let amount=+cashAmount.value;if(!amount||amount<=0)return msg("اكتب مبلغ كاش صحيح");let val=usdFrom(amount,cashCurrency.value,+cashRate.value||1);if(cashKind.value==="remove"&&!canSpendCash(val))return;let op={id:uid(),kind:cashKind.value,amount,currency:cashCurrency.value,rate:+cashRate.value||1,date:cashDate.value||today(),note:cashNote.value.trim(),createdAt:new Date().toISOString()};db.cashOps.push(op);save();clearCashForm();render();msg("تم حفظ حركة الكاش")}
+function delCashOp(id){if(confirm("حذف حركة الكاش؟")){db.cashOps=db.cashOps.filter(o=>o.id!==id);save();render()}}
+function renderCash(){let t=cashTotals();if(window.cashNow){cashNow.textContent=money(t.total);cashManualIn.textContent=money(t.manualIn);cashManualOut.textContent=money(t.manualOut);cashAutoNet.textContent=money(t.autoNet)}let f=cashFilter?.value||"",q=(cashSearch?.value||"").trim();let rows=cashEntries().filter(e=>{let ok=!q||e.title.includes(q)||(e.note||"").includes(q);if(f==="manual")ok=ok&&e.manual;if(f==="auto")ok=ok&&!e.manual;if(f==="in")ok=ok&&e.dir==="in";if(f==="out")ok=ok&&e.dir==="out";return ok});if(window.cashList){let warn=t.raw<0?`<div class="empty bad">يوجد سجل قديم جعل الكاش أقل من صفر، لذلك يظهر الرصيد الحالي صفر. أضف كاش أو احذف العمليات القديمة لتصحيح السجل.</div>`:"";cashList.innerHTML=warn+rows.map(e=>`<div class="item"><div><h3 class="${e.dir==="in"?"good":"bad"}">${esc(e.title)}</h3><p>${esc(e.date||"")} • ${e.manual?"يدوي":"تلقائي"} • ${esc(e.note||"بدون ملاحظة")}</p><span class="badge ${e.dir==="in"?"good":"bad"}">${e.dir==="in"?"+":"-"} ${money(e.amount)}</span></div>${e.manual?`<button class="btn small danger" onclick="delCashOp('${e.id}')">حذف</button>`:""}</div>`).join("")||`<div class="empty">لا توجد حركات كاش</div>`}}
+function allProjectTotals(){let cost=0,profit=0;db.projectOps.forEach(o=>{if(o.kind==="cost")cost+=usd(o);else profit+=usd(o)});return{cost,profit,net:profit-cost}} function partnerName(id){let p=pfind(id);return p?p.name:"شخص محذوف"} function status(v){if(v>0.009)return `<span class="badge good">لك عليه ${money(v)}</span>`;if(v<-0.009)return `<span class="badge bad">عليك له ${money(Math.abs(v))}</span>`;return `<span class="badge muted">مسدّد</span>`}
+function refreshSelects(){let popts=db.people.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("");[txPerson,filterPerson,partnerPerson].forEach(sel=>{if(sel){let old=sel.value;sel.innerHTML=(sel===filterPerson?`<option value="">كل الأشخاص</option>`:"")+popts;if([...sel.options].some(o=>o.value===old))sel.value=old}});let cats=[...new Set(db.projects.map(p=>p.category).filter(Boolean))];projectCategoryFilter.innerHTML=`<option value="">كل التصنيفات</option>`+cats.map(c=>`<option>${esc(c)}</option>`).join("")}
+function setType(t){currentType=t;document.querySelectorAll(".tabs3 button").forEach(b=>b.classList.remove("active"));document.getElementById("q_"+t).classList.add("active");typeHelp.textContent=TYPE[t][1]} function fillPreset(){if(notePreset.value)txNote.value=notePreset.value} function updateRateInput(cur,rate){if(cur.value==="USD")rate.value=1;if(cur.value==="TRY")rate.value=settings.tryRate;if(cur.value==="SYP")rate.value=settings.sypRate}
+function clearTx(){editingId=null;saveBtn.textContent="حفظ الحركة";cancelEditBtn.style.display="none";txAmount.value="";txCurrency.value=settings.defaultCurrency;updateRateInput(txCurrency,txRate);txDate.value=today();txNote.value="";notePreset.value="";setType("take")} function cancelEdit(){clearTx()}
+function addPerson(){let name=personName.value.trim();if(!name)return msg("اكتب اسم الشخص");if(db.people.some(p=>p.name===name))return msg("الشخص موجود");db.people.push({id:uid(),name,group:personGroup.value.trim(),info:personInfo.value.trim()});personName.value=personGroup.value=personInfo.value="";save();render();msg("تمت إضافة الشخص")}
+function addProject(){let name=projectName.value.trim();if(!name)return msg("اكتب اسم المشروع");if(db.projects.some(p=>p.name===name))return msg("المشروع موجود");let id=uid();db.projects.push({id,name,status:projectStatus.value,category:projectCategory.value.trim(),budget:+projectBudget.value||0,start:projectStart.value,end:projectEnd.value,note:projectNote.value.trim(),partners:[],createdAt:new Date().toISOString()});projectName.value=projectCategory.value=projectBudget.value=projectStart.value=projectEnd.value=projectNote.value="";projectStatus.value="active";save();render();openProject(id);msg("تم إنشاء المشروع وفتح صفحته")}
+function addPartner(){let pr=prfind(currentProjectId);if(!pr)return msg("افتح مشروعًا أولًا");if(!partnerPerson.value)return msg("اختر الشريك");let sh=+partnerShare.value;if(!sh||sh<=0)return msg("اكتب نسبة صحيحة");pr.partners??=[];let ex=pr.partners.find(x=>x.personId===partnerPerson.value);if(ex){ex.share=sh;ex.note=partnerNote.value.trim()}else pr.partners.push({id:uid(),personId:partnerPerson.value,share:sh,note:partnerNote.value.trim()});partnerShare.value=partnerNote.value="";save();renderProjectPage();render();msg("تم حفظ الشريك")} function delPartner(pid,partId){let pr=prfind(pid);if(!pr)return;pr.partners=pr.partners.filter(x=>x.id!==partId);save();renderProjectPage();render()}
+function addProjectOp(kind){let pr=prfind(currentProjectId);if(!pr)return msg("افتح مشروعًا أولًا");let prefix=kind==="cost"?"cost":"profit";let amount=+document.getElementById(prefix+"Amount").value;if(!amount||amount<=0)return msg("اكتب مبلغًا صحيحًا");let currency=document.getElementById(prefix+"Currency").value,rate=+document.getElementById(prefix+"Rate").value||1;let val=usdFrom(amount,currency,rate);if(kind==="cost"&&!canSpendCash(val))return;let op={id:uid(),projectId:currentProjectId,kind,category:document.getElementById(prefix+"Category").value.trim(),amount,currency,rate,date:document.getElementById(prefix+"Date").value||today(),note:document.getElementById(prefix+"Note").value.trim(),createdAt:new Date().toISOString()};db.projectOps.push(op);["Amount","Category","Note"].forEach(x=>document.getElementById(prefix+x).value="");document.getElementById(prefix+"Date").value=today();save();renderProjectPage();render();msg(kind==="cost"?"تم حفظ التكلفة":"تم حفظ الربح")}
+function editCurrentProject(){let p=prfind(currentProjectId);if(!p)return;editProject(p.id);renderProjectPage()} function editProject(id){let p=prfind(id);if(!p)return;let n=prompt("اسم المشروع",p.name);if(!n||!n.trim())return;p.name=n.trim();let cat=prompt("تصنيف",p.category||"");if(cat!==null)p.category=cat.trim();let bud=prompt("ميزانية",p.budget||"");if(bud!==null)p.budget=+bud||0;let st=prompt("الحالة active / done / paused",p.status||"active");if(st&&["active","done","paused"].includes(st))p.status=st;let note=prompt("ملاحظة",p.note||"");if(note!==null)p.note=note.trim();save();render()} function delProject(id){if(db.projectOps.some(o=>o.projectId===id))return msg("لا يمكن حذف مشروع لديه عمليات");if(confirm("حذف المشروع؟")){db.projects=db.projects.filter(p=>p.id!==id);save();render()}}
+function saveTx(){if(!db.people.length)return msg("أضف شخصًا أولًا");let t={id:editingId||uid(),type:currentType,personId:txPerson.value,amount:+txAmount.value,currency:txCurrency.value,rate:+txRate.value||1,date:txDate.value||today(),note:txNote.value.trim(),createdAt:new Date().toISOString()};if(!t.personId)return msg("اختر الشخص");if(!t.amount||t.amount<=0)return msg("اكتب مبلغًا صحيحًا");if(settings.requireNote==="yes"&&!t.note)return msg("اكتب الملاحظة");if(t.type==="give"&&!canSpendCash(usd(t)))return;if(editingId){let i=db.txs.findIndex(x=>x.id===editingId);if(i>=0)db.txs[i]=t}else db.txs.push(t);save();clearTx();render();msg("تم الحفظ")} function editTx(id){let t=db.txs.find(x=>x.id===id);if(!t)return;editingId=id;setType(t.type);txPerson.value=t.personId;txAmount.value=t.amount;txCurrency.value=t.currency;txRate.value=t.rate;txDate.value=t.date;txNote.value=t.note;saveBtn.textContent="حفظ التعديل";cancelEditBtn.style.display="inline-block";page("home",document.querySelectorAll(".nav button")[0])} function delTx(id){if(confirm("حذف الحركة؟")){db.txs=db.txs.filter(t=>t.id!==id);save();render()}} function delProjectOp(id){if(confirm("حذف العملية؟")){db.projectOps=db.projectOps.filter(o=>o.id!==id);save();renderProjectPage();render()}} function editPerson(id){let p=pfind(id);if(!p)return;let n=prompt("اسم الشخص",p.name);if(!n||!n.trim())return;p.name=n.trim();let g=prompt("التصنيف",p.group||"");if(g!==null)p.group=g.trim();let info=prompt("ملاحظة",p.info||"");if(info!==null)p.info=info.trim();save();render()} function delPerson(id){if(db.txs.some(t=>t.personId===id)||db.projects.some(pr=>(pr.partners||[]).some(x=>x.personId===id)))return msg("الشخص مرتبط بحركات أو شراكات");if(confirm("حذف الشخص؟")){db.people=db.people.filter(p=>p.id!==id);save();render()}}
+function page(id,b){document.querySelectorAll(".page").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");render()} function openProjectsPage(){page("projects",document.querySelectorAll(".nav button")[3])} function openProject(id){currentProjectId=id;document.querySelectorAll(".page").forEach(s=>s.classList.remove("active"));projectPage.classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));renderProjectPage()} function filterPersonGo(id){page("ledger",document.querySelectorAll(".nav button")[4]);setTimeout(()=>{filterPerson.value=id;render()},50)} function clearPersonFilters(){peopleSearch.value="";peopleStatus.value="";render()}
+function render(){refreshSelects();let b=bals(),rec=0,owe=0;Object.values(b).forEach(v=>{if(v>0)rec+=v;if(v<0)owe+=Math.abs(v)});let pt=allProjectTotals(),ct=cashTotals();topRec.textContent=money(rec);topOwe.textContent=money(owe);topProjectNet.textContent=money(pt.net);topActiveProjects.textContent=db.projects.filter(p=>p.status==="active").length;if(window.topCash)topCash.textContent=money(ct.total);countPeople.textContent=db.people.length;countProjects.textContent=db.projects.length;countTx.textContent=db.txs.length;countPOps.textContent=db.projectOps.length;let sorted=[...db.people].sort((a,c)=>Math.abs(b[c.id]||0)-Math.abs(b[a.id]||0));homePeople.innerHTML=sorted.slice(0,7).map(p=>personCard(p,b[p.id])).join("")||`<div class="empty">أضف أول شخص وابدأ الحساب</div>`;renderPeople(b,sorted);renderProjects();renderLedger(b);renderCash();applySettings()}
+function renderPeople(b,sorted){let q=(peopleSearch?.value||"").trim(),st=peopleStatus?.value||"";let people=sorted.filter(p=>{let v=b[p.id]||0;let ok=!q||p.name.includes(q)||(p.group||"").includes(q)||(p.info||"").includes(q);if(st==="rec")ok=ok&&v>0;if(st==="owe")ok=ok&&v<0;if(st==="zero")ok=ok&&Math.abs(v)<.009;return ok});peopleList.innerHTML=people.map(p=>personCard(p,b[p.id],true)).join("")||`<div class="empty">لا توجد نتائج</div>`} function personCard(p,v,actions=false){let n=db.txs.filter(t=>t.personId===p.id).length;return `<div class="item"><div><h3>${esc(p.name)} ${p.group?`<span class="badge">${esc(p.group)}</span>`:""}</h3><p>${esc(p.info||"لا توجد ملاحظة")} • ${n} حركة</p>${status(v||0)}</div><div class="actions"><button class="btn small secondary" onclick="filterPersonGo('${p.id}')">📒<br>السجل</button>${actions?`<button class="btn small secondary" onclick="editPerson('${p.id}')">تعديل</button><button class="btn small danger" onclick="delPerson('${p.id}')">حذف</button>`:""}</div></div>`}
+function renderProjects(){let q=(projectSearch?.value||"").trim(),sf=projectStatusFilter?.value||"",cf=projectCategoryFilter?.value||"";let cats=[...new Set(db.projects.map(p=>p.category).filter(Boolean))];projectCategoryFilter.innerHTML=`<option value="">كل التصنيفات</option>`+cats.map(c=>`<option ${c===cf?"selected":""}>${esc(c)}</option>`).join("");let pt=allProjectTotals();projectTotal.textContent=db.projects.length;projectActive.textContent=db.projects.filter(p=>p.status==="active").length;allCost.textContent=money(pt.cost);allProfit.textContent=money(pt.profit);let list=db.projects.filter(p=>(!q||p.name.includes(q)||(p.note||"").includes(q)||(p.category||"").includes(q))&&(!sf||p.status===sf)&&(!cf||p.category===cf));projectsList.innerHTML=list.map(projectListCard).join("")||`<div class="empty">لا توجد مشاريع</div>`} function projectListCard(p){let s=projectStats(p.id);return `<div class="item"><div><h3>${esc(p.name)} <span class="badge">${p.status==="active"?"نشط":p.status==="done"?"منتهي":"متوقف"}</span> ${p.category?`<span class="badge">${esc(p.category)}</span>`:""}</h3><p>${esc(p.note||"لا توجد ملاحظة")}</p><span class="badge bad">تكلفة ${money(s.cost)}</span> <span class="badge good">ربح ${money(s.profit)}</span> <span class="badge ${s.net>=0?"good":"bad"}">صافي ${money(s.net)}</span></div><div class="actions"><button class="btn small" onclick="openProject('${p.id}')">فتح المشروع</button><button class="btn small secondary" onclick="editProject('${p.id}')">تعديل</button><button class="btn small danger" onclick="delProject('${p.id}')">حذف</button></div></div>`}
+function renderProjectPage(){let p=prfind(currentProjectId);if(!p){openProjectsPage();return}let s=projectStats(p.id),budget=+p.budget||0,perc=budget?Math.min(100,Math.round(s.cost/budget*100)):0,partners=p.partners||[],shareSum=partners.reduce((a,x)=>a+(+x.share||0),0);projectPageTitle.textContent="مشروع: "+p.name;projectPageSummary.innerHTML=`<div class="kpis"><div class="kpi"><span>تكلفة</span><b class="bad">${money(s.cost)}</b></div><div class="kpi"><span>ربح / إيراد</span><b class="good">${money(s.profit)}</b></div><div class="kpi"><span>الصافي</span><b class="${s.net>=0?"good":"bad"}">${money(s.net)}</b></div><div class="kpi"><span>العمليات</span><b>${s.count}</b></div></div>${budget?`<div class="progress"><i style="width:${perc}%"></i></div><p class="muted">استخدام الميزانية: ${perc}% من ${money(budget)}</p>`:""}`;projectInfoBox.innerHTML=`<p class="muted">${esc(p.note||"لا توجد ملاحظة")}</p><span class="badge">${p.status==="active"?"نشط":p.status==="done"?"منتهي":"متوقف"}</span> ${p.category?`<span class="badge">${esc(p.category)}</span>`:""} <span class="badge">الشراكة ${shareSum}%</span><p class="muted">البداية: ${esc(p.start||"—")} • النهاية: ${esc(p.end||"—")}</p>`;projectPartnersList.innerHTML=partners.map(x=>{let val=s.net*(+x.share||0)/100;return `<div class="item"><div><h3>${esc(partnerName(x.personId))}</h3><p>النسبة ${x.share}% ${x.note?`• ${esc(x.note)}`:""}</p><span class="badge ${val>=0?"good":"bad"}">الحصة ${money(val)}</span></div><button class="btn small danger" onclick="delPartner('${p.id}','${x.id}')">حذف</button></div>`}).join("")||`<div class="empty">لا يوجد شركاء</div>`;let kind=projectPageOpFilter.value,q=(projectPageSearch.value||"").trim();let ops=[...db.projectOps].filter(o=>o.projectId===p.id&&(!kind||o.kind===kind)&&(!q||(o.category||"").includes(q)||(o.note||"").includes(q))).reverse();projectPageOpsList.innerHTML=ops.map(opCard).join("")||`<div class="empty">لا توجد عمليات لهذا المشروع</div>`}
+function opCard(o){return `<div class="item"><div><h3><span class="${o.kind==="cost"?"bad":"good"}">${o.kind==="cost"?"تكلفة":"ربح / إيراد"}</span> ${esc(o.category||"بدون تصنيف")}</h3><p>${esc(o.date)} • ${o.amount} ${o.currency} ≈ ${money(usd(o))}</p><p>${esc(o.note||"بدون ملاحظة")}</p></div><button class="btn small danger" onclick="delProjectOp('${o.id}')">حذف</button></div>`} function renderLedger(b){let fp=filterPerson.value,ft=filterType.value,q=(ledgerSearch.value||"").trim();let rows=[...db.txs].reverse().filter(t=>{let p=pfind(t.personId);return(!fp||t.personId===fp)&&(!ft||t.type===ft)&&(!q||(t.note||"").includes(q)||(p&&p.name.includes(q)))});personStats.innerHTML=fp?`<div class="kpis"><div class="kpi"><span>الشخص</span><b>${esc(partnerName(fp))}</b></div><div class="kpi"><span>الرصيد</span><b>${status(b[fp]||0)}</b></div></div>`:"";txList.innerHTML=rows.map(txCard).join("")||`<div class="empty">لا توجد حركات</div>`} function txCard(t){let p=pfind(t.personId),im=impact(t),name=t.type==="take"?"أخذت من":t.type==="give"?"أعطيت لـ":"اشتريت من";return `<div class="item"><div><h3>${name} ${esc(p?p.name:"شخص محذوف")}</h3><p>${esc(t.date)} • ${t.amount} ${t.currency} ≈ ${money(usd(t))}</p><p>${esc(t.note||"بدون ملاحظة")}</p><span class="badge ${im>=0?"good":"bad"}">${im>=0?"زاد لك":"زاد عليك"} ${money(Math.abs(im))}</span></div><div class="actions"><button class="btn small secondary" onclick="editTx('${t.id}')">تعديل</button><button class="btn small danger" onclick="delTx('${t.id}')">حذف</button></div></div>`}
+function exportJSON(){download("A_NAES_backup.json",JSON.stringify({db,settings,exportedAt:new Date().toISOString()},null,2),"application/json")} function exportCSV(){let lines=[["kind","date","type","name","amount","currency","rate","usd","note"].join(",")];db.txs.forEach(t=>{let p=pfind(t.personId),name=t.type==="take"?"أخذت من":t.type==="give"?"أعطيت لـ":"اشتريت من";let vals=["person",t.date,name,p?p.name:"",t.amount,t.currency,t.rate,usd(t).toFixed(2),t.note];lines.push(vals.map(v=>`"${String(v).replaceAll('"','""')}"`).join(","))});db.projectOps.forEach(o=>{let pr=prfind(o.projectId),vals=["project",o.date,o.kind==="cost"?"تكلفة":"ربح",pr?pr.name:"",o.amount,o.currency,o.rate,usd(o).toFixed(2),o.note];lines.push(vals.map(v=>`"${String(v).replaceAll('"','""')}"`).join(","))});db.cashOps.forEach(o=>{let vals=["cash",o.date,o.kind==="add"?"إضافة كاش":"دفعت من الكاش","الكاش",o.amount,o.currency,o.rate,usd(o).toFixed(2),o.note];lines.push(vals.map(v=>`"${String(v).replaceAll('"','""')}"`).join(","))});download("A_NAES_ledger.csv","\ufeff"+lines.join("\n"),"text/csv;charset=utf-8")}
+function importJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let data=JSON.parse(r.result);if(data.db){db={people:[],projects:[],projectOps:[],txs:[],cashOps:[],...data.db};settings={...settings,...(data.settings||{})}}else throw 0;save();saveSettings();render();msg("تم الاستيراد")}catch(_){msg("ملف غير صحيح")}};r.readAsText(f)} function resetAll(){if(confirm("مسح كل البيانات؟")){localStorage.removeItem(DATA_KEY);db={people:[],projects:[],projectOps:[],txs:[],cashOps:[]};save();render();msg("تم المسح")}} function download(name,text,type){if(window.AndroidBridge&&AndroidBridge.saveFile){AndroidBridge.saveFile(name,text,type||"text/plain");return}let blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+txDate.value=today();costDate.value=today();profitDate.value=today();cashDate.value=today();[txCurrency,costCurrency,profitCurrency,cashCurrency].forEach((el,i)=>el.addEventListener("change",()=>updateRateInput(el,[txRate,costRate,profitRate,cashRate][i])));load();clearTx();clearCashForm();updateRateInput(costCurrency,costRate);updateRateInput(profitCurrency,profitRate);render();checkLock();
+</script></body></html>
